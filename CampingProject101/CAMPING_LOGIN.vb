@@ -3,7 +3,6 @@
 Public Class Camping_Login
     Private Sub Camping_Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConnectDbase()
-
     End Sub
 
     Private Sub btnRegisterScreen_Click(sender As Object, e As EventArgs) Handles btnRegisterScreen.Click
@@ -12,11 +11,14 @@ Public Class Camping_Login
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        login()
+    End Sub
+
+    Private Sub checkhide_CheckedChanged(sender As Object, e As EventArgs) Handles checkhide.CheckedChanged
         If checkhide.Checked Then
             txtpass.UseSystemPasswordChar = False
         Else
             txtpass.UseSystemPasswordChar = True
         End If
-        login()
     End Sub
 End Class

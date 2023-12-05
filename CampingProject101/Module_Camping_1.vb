@@ -4,13 +4,14 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 Imports Microsoft.VisualBasic.Devices
 Imports MySql.Data.MySqlClient
 Imports Mysqlx
+Imports Mysqlx.XDevAPI.Relational
 Imports Org.BouncyCastle.Crypto.Generators
-' test push/pull
+
 Module Module_Camping_1
     Dim con As New MySqlConnection
     Dim reader As MySqlDataReader
     Dim mysqlcmd As New MySqlCommand
-    Dim mysqlcmd2, mysqlcmd3, mysqlcmd4 As New MySqlCommand
+    Dim mysqlcmd2 As New MySqlCommand
     Dim dtTable As New DataTable
     Dim adapter As New MySqlDataAdapter
     Dim host, uname, pwd, dbname As String
@@ -34,43 +35,62 @@ Module Module_Camping_1
             End Try
         End If
     End Sub
-    Public Sub login()
+    Public Sub Login()
         Dim username, password As String
         username = Camping_Login.txtuser.Text
         password = Camping_Login.txtpass.Text
-        sqlquery = "SELECT * FROM accounts WHERE Username = @username and Password = @password"
-        mysqlcmd = New MySqlCommand(sqlquery, con)
-        mysqlcmd.Parameters.AddWithValue("@username", username)
-        mysqlcmd.Parameters.AddWithValue("@password", password)
         Dim role As String = GetUserRole(username)
-        reader = mysqlcmd.ExecuteReader
-        If reader.Read Then
-            If role = "Camper" Then
-                CamperInterface.Show()
-                Camping_Login.Hide()
-            ElseIf role = "Admin" Then
-                AdminInterface.Show()
-                Camping_Login.Hide()
-            ElseIf role = "Admin" Then
-                StaffInterface.Show()
-                Camping_Login.Hide()
-            End If
 
-        End If
+        Try
 
+            Dim sqlQuery As String = "SELECT * FROM accounts WHERE Username = @username AND Password = @password"
+            Using mysqlcmd As New MySqlCommand(sqlQuery, con)
+                mysqlcmd.Parameters.AddWithValue("@username", username)
+                mysqlcmd.Parameters.AddWithValue("@password", password)
+
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader
+                    If reader.Read Then
+                        If role = "Camper" Then
+                            CamperInterface.Show()
+                            Camping_Login.Hide()
+                        ElseIf role = "Admin" Then
+                            AdminInterface.Show()
+                            Camping_Login.Hide()
+                        ElseIf role = "Staff" Then
+                            StaffInterface.Show()
+                            Camping_Login.Hide()
+                        End If
+                    Else
+                        MessageBox.Show("Invalid username or password.")
+                    End If
+                End Using
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+        End Try
     End Sub
+
     Public Function GetUserRole(username As String) As String
         Dim query As String = "SELECT Account_Type FROM Accounts WHERE Username=@Username;"
         Using command As New MySqlCommand(query, con)
             command.Parameters.AddWithValue("@Username", username)
-            Dim role As Object = command.ExecuteScalar()
-            If role IsNot Nothing Then
-                Return role.ToString()
-            Else
+            Try
+                Dim role As Object = command.ExecuteScalar()
+                If role IsNot Nothing Then
+                    Return role.ToString()
+                Else
+                    Return "Unknown"
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error: " & ex.Message)
                 Return "Unknown"
-            End If
+            Finally
+            End Try
         End Using
     End Function
+
     Public Sub Camper_Registry()
         Dim username, password, confirmpassword, fullname, age, birthday, phonenumber, address As String
 
@@ -108,6 +128,50 @@ Module Module_Camping_1
                 MsgBox("Registered Successfully")
                 Camper_Registration.Hide()
                 Camping_Login.Show()
+            Catch ex As Exception
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
+                TextClear()
+            End Try
+        Else
+            MessageBox.Show("Confirm Password does not match!")
+        End If
+    End Sub
+    Public Sub AddCampers()
+        Dim username, password, confirmpassword, fullname, age, birthday, phonenumber, address As String
+
+        ' SET TO STRING FOR TEXTBOXES
+        username = AddCamper.txtUsername.Text
+        password = AddCamper.txtPassword.Text
+        confirmpassword = AddCamper.txtconfirmPassword.Text
+        fullname = AddCamper.txtFullName.Text
+        age = AddCamper.txtAge.Text
+        birthday = AddCamper.txtBirthday.Text
+        phonenumber = AddCamper.txtPhoneNum.Text
+        address = AddCamper.txtAddress.Text
+        sqlquery = "INSERT INTO camping.campers(Name, Age, Birthday, Phone_Num, Address) 
+                    VALUES (@fullname, @age, @birthday, @phonenumber, @address)"
+        sqlquery2 = "INSERT INTO camping.accounts(Username, Password, Account_Type) 
+                    VALUES (@username, @password, 'Camper')"
+        ' MYSQL COMMAND
+        mysqlcmd = New MySqlCommand(sqlquery, con)
+        mysqlcmd2 = New MySqlCommand(sqlquery2, con)
+        ' PARAMETER VALUES
+        ' FOR CAMPERS
+        mysqlcmd.Parameters.AddWithValue("@fullname", fullname)
+        mysqlcmd.Parameters.AddWithValue("@age", age)
+        mysqlcmd.Parameters.AddWithValue("@birthday", birthday)
+        mysqlcmd.Parameters.AddWithValue("@phonenumber", phonenumber)
+        mysqlcmd.Parameters.AddWithValue("@address", address)
+        ' FOR ACCOUNTS
+        mysqlcmd2.Parameters.AddWithValue("@username", username)
+        mysqlcmd2.Parameters.AddWithValue("@password", password)
+        If password = confirmpassword Then
+            Try
+                ' execute query commadn
+                mysqlcmd.ExecuteNonQuery()
+                mysqlcmd2.ExecuteNonQuery()
+                MsgBox("Registered Successfully")
             Catch ex As Exception
                 MessageBox.Show("Error: " & ex.Message)
             Finally
@@ -157,7 +221,7 @@ Module Module_Camping_1
             Catch ex As Exception
                 MessageBox.Show("Error: " & ex.Message)
             Finally
-                TextClear()
+
             End Try
         Else
             MessageBox.Show("Confirm Password does not match!")
@@ -238,6 +302,55 @@ Module Module_Camping_1
         Admin_Registration.txtPHONENUM.Clear()
         Admin_Registration.txtADDRESS.Clear()
 
+    End Sub
+    Public Sub SearchData()
+        Dim name As String
+        name = AddCamper.txtUsername.Text
+        sqlquery = "SELECT * FROM campers WHERE name = @name"
+        mysqlcmd = New MySqlCommand(sqlquery, con)
+        mysqlcmd.Parameters.AddWithValue("@name", name)
+        Try
+            reader = mysqlcmd.ExecuteReader()
+
+            If reader.Read Then
+                AddCamper.txtFullName.Text = reader("Name").ToString()
+                AddCamper.txtAge.Text = reader("Age").ToString()
+                'AddCamper.txtUsername.Text = reader("Username").ToString()
+                'AddCamper.txtPassword.Text = reader("Password").ToString()
+                AddCamper.txtPhoneNum.Text = reader("Phone_num").ToString()
+                AddCamper.txtAddress.Text = reader("Address").ToString()
+                AddCamper.txtBirthday.Text = reader("Birthday").ToString()
+            Else
+                MsgBox("no record found")
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            reader.Close()
+        End Try
+    End Sub
+    Public Sub DisplayData(accountType As String)
+        Try
+
+            Dim sqlquery As String = "SELECT * FROM Accounts WHERE Account_Type = @type"
+            Dim adapter As New MySqlDataAdapter(sqlquery, con)
+            adapter.SelectCommand.Parameters.AddWithValue("@type", accountType)
+
+            Dim dtTable As New DataTable
+            adapter.Fill(dtTable)
+
+            ' Use the data table as the data source for the DataGridView
+            With ViewCampers.dgvdata
+                .DataSource = dtTable
+                .AutoResizeColumns()
+
+            End With
+
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Message)
+        End Try
     End Sub
 
 End Module
