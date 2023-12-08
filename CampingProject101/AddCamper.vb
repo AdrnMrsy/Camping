@@ -16,16 +16,19 @@
         AddCampers()
     End Sub
 
-    Private Sub CRegisterBack_Click(sender As Object, e As EventArgs) Handles CRegisterBack.Click
-        Me.Hide()
-        CamperManagement.Show()
-    End Sub
 
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        SearchData()
-    End Sub
 
     Private Sub txtAge_TextChanged(sender As Object, e As EventArgs) Handles txtAge.TextChanged
 
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Me.Hide()
+        ViewCampers.Show()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Hide()
+        EditCampers.Show()
     End Sub
 End Class

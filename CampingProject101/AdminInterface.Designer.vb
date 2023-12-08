@@ -25,15 +25,25 @@ Partial Class AdminInterface
         Label1 = New Label()
         btncampmng = New Button()
         Panel1 = New Panel()
+        Button1 = New Button()
         Button9 = New Button()
         Button8 = New Button()
         Button7 = New Button()
         Button6 = New Button()
         Button5 = New Button()
-        Button4 = New Button()
-        Button3 = New Button()
-        Button2 = New Button()
+        Label2 = New Label()
+        Panel2 = New Panel()
+        lbltotal = New Label()
+        Panel3 = New Panel()
+        lblact = New Label()
+        Label4 = New Label()
+        Panel4 = New Panel()
+        Label5 = New Label()
+        Label6 = New Label()
         Panel1.SuspendLayout()
+        Panel2.SuspendLayout()
+        Panel3.SuspendLayout()
+        Panel4.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -58,24 +68,31 @@ Partial Class AdminInterface
         ' Panel1
         ' 
         Panel1.BackColor = SystemColors.ActiveBorder
+        Panel1.Controls.Add(Button1)
         Panel1.Controls.Add(Button9)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(Button8)
         Panel1.Controls.Add(Button7)
         Panel1.Controls.Add(Button6)
         Panel1.Controls.Add(Button5)
-        Panel1.Controls.Add(Button4)
-        Panel1.Controls.Add(Button3)
-        Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(btncampmng)
         Panel1.Location = New Point(2, 1)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(208, 409)
         Panel1.TabIndex = 2
         ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(34, 354)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(143, 23)
+        Button1.TabIndex = 10
+        Button1.Text = "logout"
+        Button1.UseVisualStyleBackColor = True
+        ' 
         ' Button9
         ' 
-        Button9.Location = New Point(34, 309)
+        Button9.Location = New Point(34, 314)
         Button9.Name = "Button9"
         Button9.Size = New Size(143, 23)
         Button9.TabIndex = 9
@@ -84,7 +101,7 @@ Partial Class AdminInterface
         ' 
         ' Button8
         ' 
-        Button8.Location = New Point(34, 280)
+        Button8.Location = New Point(34, 269)
         Button8.Name = "Button8"
         Button8.Size = New Size(143, 23)
         Button8.TabIndex = 8
@@ -93,7 +110,7 @@ Partial Class AdminInterface
         ' 
         ' Button7
         ' 
-        Button7.Location = New Point(34, 251)
+        Button7.Location = New Point(34, 225)
         Button7.Name = "Button7"
         Button7.Size = New Size(143, 23)
         Button7.TabIndex = 7
@@ -102,7 +119,7 @@ Partial Class AdminInterface
         ' 
         ' Button6
         ' 
-        Button6.Location = New Point(34, 222)
+        Button6.Location = New Point(34, 171)
         Button6.Name = "Button6"
         Button6.Size = New Size(143, 23)
         Button6.TabIndex = 6
@@ -111,50 +128,122 @@ Partial Class AdminInterface
         ' 
         ' Button5
         ' 
-        Button5.Location = New Point(34, 193)
+        Button5.Location = New Point(34, 127)
         Button5.Name = "Button5"
         Button5.Size = New Size(143, 23)
         Button5.TabIndex = 5
         Button5.Text = "Activity  Scheduling"
         Button5.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' Label2
         ' 
-        Button4.Location = New Point(34, 164)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(143, 23)
-        Button4.TabIndex = 4
-        Button4.Text = "Attendance tracking"
-        Button4.UseVisualStyleBackColor = True
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label2.Location = New Point(54, 14)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(72, 21)
+        Label2.TabIndex = 11
+        Label2.Text = "Campers"
         ' 
-        ' Button3
+        ' Panel2
         ' 
-        Button3.Location = New Point(34, 135)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(143, 23)
-        Button3.TabIndex = 3
-        Button3.Text = "Financial Management"
-        Button3.UseVisualStyleBackColor = True
+        Panel2.BackColor = SystemColors.ActiveBorder
+        Panel2.Controls.Add(lbltotal)
+        Panel2.Controls.Add(Label2)
+        Panel2.Location = New Point(269, 51)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(175, 100)
+        Panel2.TabIndex = 12
         ' 
-        ' Button2
+        ' lbltotal
         ' 
-        Button2.Location = New Point(34, 106)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(143, 23)
-        Button2.TabIndex = 2
-        Button2.Text = "Program Management"
-        Button2.UseVisualStyleBackColor = True
+        lbltotal.AutoSize = True
+        lbltotal.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbltotal.Location = New Point(78, 59)
+        lbltotal.Name = "lbltotal"
+        lbltotal.Size = New Size(19, 21)
+        lbltotal.TabIndex = 12
+        lbltotal.Text = "0"
+        ' 
+        ' Panel3
+        ' 
+        Panel3.BackColor = SystemColors.ActiveBorder
+        Panel3.Controls.Add(lblact)
+        Panel3.Controls.Add(Label4)
+        Panel3.Location = New Point(503, 51)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(164, 100)
+        Panel3.TabIndex = 13
+        ' 
+        ' lblact
+        ' 
+        lblact.AutoSize = True
+        lblact.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblact.Location = New Point(67, 59)
+        lblact.Name = "lblact"
+        lblact.Size = New Size(19, 21)
+        lblact.TabIndex = 12
+        lblact.Text = "0"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label4.Location = New Point(42, 14)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(72, 21)
+        Label4.TabIndex = 11
+        Label4.Text = "Activities"
+        ' 
+        ' Panel4
+        ' 
+        Panel4.BackColor = SystemColors.ActiveBorder
+        Panel4.Controls.Add(Label5)
+        Panel4.Controls.Add(Label6)
+        Panel4.Location = New Point(269, 226)
+        Panel4.Name = "Panel4"
+        Panel4.Size = New Size(175, 100)
+        Panel4.TabIndex = 13
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label5.Location = New Point(78, 60)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(19, 21)
+        Label5.TabIndex = 12
+        Label5.Text = "0"
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label6.Location = New Point(54, 14)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(72, 21)
+        Label6.TabIndex = 11
+        Label6.Text = "Campers"
         ' 
         ' AdminInterface
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(761, 390)
+        Controls.Add(Panel4)
+        Controls.Add(Panel3)
+        Controls.Add(Panel2)
         Controls.Add(Panel1)
         Name = "AdminInterface"
         Text = "AdminInterface"
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
+        Panel2.ResumeLayout(False)
+        Panel2.PerformLayout()
+        Panel3.ResumeLayout(False)
+        Panel3.PerformLayout()
+        Panel4.ResumeLayout(False)
+        Panel4.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -162,11 +251,18 @@ Partial Class AdminInterface
     Friend WithEvents btncampmng As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Button5 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button6 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents lbltotal As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents lblact As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
 End Class
