@@ -26,7 +26,10 @@
 
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        DisplayData("Camper")
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Hide()
+        ArchiveCampers.Show()
+
     End Sub
 End Class

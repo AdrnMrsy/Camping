@@ -29,7 +29,6 @@ Partial Class ViewCampers
         Button6 = New Button()
         Button3 = New Button()
         Label10 = New Label()
-        Button4 = New Button()
         Button7 = New Button()
         lblTotalCampers = New Label()
         Label2 = New Label()
@@ -70,7 +69,6 @@ Partial Class ViewCampers
         Panel1.Controls.Add(Button6)
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Label10)
-        Panel1.Controls.Add(Button4)
         Panel1.Controls.Add(Button7)
         Panel1.Location = New Point(-3, 0)
         Panel1.Name = "Panel1"
@@ -88,7 +86,7 @@ Partial Class ViewCampers
         ' 
         ' Button6
         ' 
-        Button6.Location = New Point(47, 310)
+        Button6.Location = New Point(47, 309)
         Button6.Name = "Button6"
         Button6.Size = New Size(99, 23)
         Button6.TabIndex = 6
@@ -97,7 +95,7 @@ Partial Class ViewCampers
         ' 
         ' Button3
         ' 
-        Button3.Location = New Point(47, 103)
+        Button3.Location = New Point(47, 125)
         Button3.Name = "Button3"
         Button3.Size = New Size(106, 23)
         Button3.TabIndex = 1
@@ -114,18 +112,9 @@ Partial Class ViewCampers
         Label10.TabIndex = 0
         Label10.Text = "Camper Management"
         ' 
-        ' Button4
-        ' 
-        Button4.Location = New Point(47, 197)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(106, 23)
-        Button4.TabIndex = 4
-        Button4.Text = "View Campers"
-        Button4.UseVisualStyleBackColor = True
-        ' 
         ' Button7
         ' 
-        Button7.Location = New Point(47, 151)
+        Button7.Location = New Point(47, 186)
         Button7.Name = "Button7"
         Button7.Size = New Size(106, 23)
         Button7.TabIndex = 2
@@ -226,7 +215,6 @@ Partial Class ViewCampers
     Friend WithEvents Button6 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Label10 As Label
-    Friend WithEvents Button4 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents lblTotalCampers As Label

@@ -9,7 +9,7 @@ Imports Org.BouncyCastle.Crypto.Generators
 
 Module Module_Camping_1
     Dim con As New MySqlConnection
-    Dim reader As MySqlDataReader
+    Dim reader, reader2 As MySqlDataReader
     Dim mysqlcmd As New MySqlCommand
     Dim mysqlcmd2 As New MySqlCommand
     Dim dtTable As New DataTable
@@ -56,13 +56,13 @@ Module Module_Camping_1
                 Using reader As MySqlDataReader = mysqlcmd.ExecuteReader
                     If reader.Read Then
                         If role = "Camper" Then
-                            CamperInterface.Show()
+                            WelcomeCamper.Show()
                             Camping_Login.Hide()
                         ElseIf role = "Admin" Then
                             WelcomeAdmin.Show()
                             Camping_Login.Hide()
                         ElseIf role = "Staff" Then
-                            StaffInterface.Show()
+                            WelcomeStaff.Show()
                             Camping_Login.Hide()
                         End If
                     Else
@@ -378,36 +378,27 @@ Module Module_Camping_1
     Public Sub SearchData()
         Dim id As String
         id = EditCampers.txtid.Text
-        sqlquery = "SELECT accounts.*, campers.* FROM accounts JOIN campers ON accounts.AccountID = campers.AccountID;"
+        sqlquery = "SELECT accounts.Username,accounts.Password,accounts.AccountID, campers.name,campers.age,campers.Phone_num,campers.Address,campers.birthday,campers.join_date
+FROM accounts JOIN campers ON accounts.AccountID = campers.AccountID WHERE accounts.AccountID = @id;"
         mysqlcmd = New MySqlCommand(sqlquery, con)
         mysqlcmd.Parameters.AddWithValue("@id", id)
         Try
             reader = mysqlcmd.ExecuteReader()
 
             If reader.Read Then
-
-                EditCampers.txtFullName.Text = reader("Name").ToString()
-                EditCampers.txtAge.Text = reader("Age").ToString()
-                EditCampers.txtUsername.Text = reader("Username").ToString()
-                EditCampers.txtPassword.Text = reader("Password").ToString()
-                EditCampers.txtPhoneNum.Text = reader("Phone_num").ToString()
-                EditCampers.txtAddress.Text = reader("Address").ToString()
-                EditCampers.txtBirthday.Text = reader("Birthday").ToString()
-                EditCampers.txtdate.Text = reader("Join_Date").ToString()
-                EditCampers.txtuserid.Text = reader("AccountID").ToString()
-
-
+                EditCampers.lblcamperid.text = reader("camperid").ToString()
+                EditCampers.lblfname.Text = reader("Name").ToString()
+                EditCampers.lblage.Text = reader("Age").ToString()
+                EditCampers.lblname.Text = reader("Username").ToString()
+                EditCampers.lblpass.Text = reader("Password").ToString()
+                EditCampers.lblnumber.Text = reader("Phone_num").ToString()
+                EditCampers.lbladdress.Text = reader("Address").ToString()
+                EditCampers.lblbdate.Text = reader("Birthday").ToString()
+                EditCampers.lbljdate.Text = reader("Join_Date").ToString()
+                EditCampers.lblid.Text = reader("AccountID").ToString()
             Else
                 MsgBox("no record found")
-                EditCampers.txtFullName.Clear()
-                EditCampers.txtAge.Clear()
-                EditCampers.txtUsername.Clear()
-                EditCampers.txtPassword.Clear()
-                EditCampers.txtPhoneNum.Clear()
-                EditCampers.txtAddress.Clear()
-                EditCampers.txtBirthday.Clear()
-                EditCampers.txtdate.Clear()
-                EditCampers.txtuserid.Clear()
+
             End If
 
         Catch ex As Exception
@@ -442,7 +433,7 @@ Module Module_Camping_1
         Dim deletedcampers As New Dictionary(Of String, Object)
 
         ' Select data to be deleted
-        sqlquery = "SELECT accounts.*, campers.* FROM accounts JOIN campers ON accounts.AccountID = campers.AccountID;"
+        sqlquery = "SELECT accounts.*, campers.* FROM accounts JOIN campers ON accounts.AccountID = campers.AccountID where AcccountID = @accountid;"
         Try
             Using cmdSelect As New MySqlCommand(sqlquery, con)
                 cmdSelect.Parameters.AddWithValue("@accountid", accountid)
@@ -494,8 +485,8 @@ Module Module_Camping_1
         End Try
 
         ' Insert data into another table (replace 'anothertable' with the actual table name)
-        sqlquery = "INSERT INTO archives (AccountID, Name, Age, Birthday, Phone_Num, Address,Join_Date)
-VALUES (@AccountID, @Name, @Age, @Birthday,@Phone_Num,@Address, @Join_Date)"
+        sqlquery = "INSERT INTO archives (AccountID, Name, Age, Birthday, Phone_Num, Address,Join_Date,username, password,account_type,roleID)
+VALUES (@AccountID, @Name, @Age, @Birthday,@Phone_Num,@Address, @Join_Date,@Username,@Password,@Account_Type,@camperid)"
         Try
             Using cmdInsert As New MySqlCommand(sqlquery, con)
                 cmdInsert.Parameters.AddWithValue("@AccountID", deletedcampers("AccountID"))
@@ -505,7 +496,10 @@ VALUES (@AccountID, @Name, @Age, @Birthday,@Phone_Num,@Address, @Join_Date)"
                 cmdInsert.Parameters.AddWithValue("@Phone_Num", deletedcampers("Phone_Num"))
                 cmdInsert.Parameters.AddWithValue("@Address", deletedcampers("Address"))
                 cmdInsert.Parameters.AddWithValue("@Join_Date", deletedcampers("Join_Date"))
-                ' ... repeat for other columns
+                cmdInsert.Parameters.AddWithValue("@Username", deletedcampers("Username"))
+                cmdInsert.Parameters.AddWithValue("@Password", deletedcampers("Password"))
+                cmdInsert.Parameters.AddWithValue("@Account_Type", deletedcampers("Account_Type"))
+                cmdInsert.Parameters.AddWithValue("@camperid", deletedcampers("camperid"))
                 cmdInsert.ExecuteNonQuery()
                 MsgBox("Data transferred to another table.", vbInformation, "Transfer Message")
             End Using
@@ -547,6 +541,25 @@ VALUES (@AccountID, @Name, @Age, @Birthday,@Phone_Num,@Address, @Join_Date)"
                     If reader.Read() Then
 
                         AdminInterface.lbltotal.Text = reader("total_campers").ToString()
+                    End If
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MsgBox("Error retrieving total campers: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub DisplayTotalCampersStaff()
+        Try
+            ' SQL query to get the total number of campers
+            Dim sqlquery As String = "SELECT COUNT(*) AS total_campers FROM campers;"
+            Using mysqlcmd As New MySqlCommand(sqlquery, con)
+
+                ' Execute the query and retrieve the result
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader()
+                    If reader.Read() Then
+
+                        StaffInterface.lbltotal.Text = reader("total_campers").ToString()
                     End If
                 End Using
 
@@ -619,7 +632,7 @@ VALUES (@AccountID, @Name, @Age, @Birthday,@Phone_Num,@Address, @Join_Date)"
     Public Sub ActivitySearchData()
         Dim id As String
         id = ActivityCreation.txtid.Text
-        sqlquery = "SELECT * FROM activities;"
+        sqlquery = "SELECT * FROM activities where activityid=@id;"
         mysqlcmd = New MySqlCommand(sqlquery, con)
         mysqlcmd.Parameters.AddWithValue("@id", id)
         Try
@@ -663,4 +676,166 @@ VALUES (@AccountID, @Name, @Age, @Birthday,@Phone_Num,@Address, @Join_Date)"
             MsgBox("Error retrieving total campers: " & ex.Message)
         End Try
     End Sub
+    Public Sub DisplayTotalActivitiesStaff()
+        Try
+            ' SQL query to get the total number of campers
+            Dim sqlquery As String = "SELECT COUNT(*) AS total_act FROM activities;"
+            Using mysqlcmd As New MySqlCommand(sqlquery, con)
+
+                ' Execute the query and retrieve the result
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader()
+                    If reader.Read() Then
+
+                        StaffInterface.lblact.Text = reader("total_act").ToString()
+                    End If
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MsgBox("Error retrieving total campers: " & ex.Message)
+        End Try
+    End Sub
+    'Public Sub UpdateData()
+    '    Dim id As String
+    '    id = EditCampers.lblid.Text ' Assuming lblid is the label displaying the AccountID
+
+    '    Dim newName As String = EditCampers.txtNewName.Text ' Assuming txtNewName is a TextBox for updating the name
+    '    Dim newAge As Integer = Integer.Parse(EditCampers.txtNewAge.Text) ' Assuming txtNewAge is a TextBox for updating the age
+    '    ' Add other variables for the fields you want to update
+
+    '    ' Construct the SQL update query
+    '    Dim updateQuery As String = "UPDATE campers SET Name = @newName, Age = @newAge WHERE AccountID = @id;"
+    '    mysqlcmd = New MySqlCommand(updateQuery, con)
+
+    '    ' Add parameters for the update query
+    '    mysqlcmd.Parameters.AddWithValue("@newName", newName)
+    '    mysqlcmd.Parameters.AddWithValue("@newAge", newAge)
+    '    mysqlcmd.Parameters.AddWithValue("@id", id)
+
+    '    Try
+    '        ' Execute the update query
+    '        Dim rowsAffected As Integer = mysqlcmd.ExecuteNonQuery()
+
+    '        If rowsAffected > 0 Then
+    '            MsgBox("Record updated successfully")
+    '        Else
+    '            MsgBox("No record updated. Please check the provided ID.")
+    '        End If
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
+
+    Public Sub GetArchiveData()
+        Dim id As String
+        id = ArchiveCampers.txtid.Text
+        sqlquery = "Select * From archives where ArchiveAccID = @id;"
+        mysqlcmd = New MySqlCommand(sqlquery, con)
+        mysqlcmd.Parameters.AddWithValue("@id", id)
+        Try
+            reader = mysqlcmd.ExecuteReader()
+
+            If reader.Read Then
+
+                ArchiveCampers.lblfname.Text = reader("Name").ToString()
+                ArchiveCampers.lblage.Text = reader("Age").ToString()
+                ArchiveCampers.lblname.Text = reader("Username").ToString()
+                ArchiveCampers.lblpass.Text = reader("Password").ToString()
+                ArchiveCampers.lblnumber.Text = reader("Phone_num").ToString()
+                ArchiveCampers.lbladdress.Text = reader("Address").ToString()
+                ArchiveCampers.lblbdate.Text = reader("Birthday").ToString()
+                ArchiveCampers.lbljdate.Text = reader("Join_Date").ToString()
+                ArchiveCampers.lblid.Text = reader("AccountID").ToString()
+                ArchiveCampers.lblarcid.Text = reader("ArchiveAccID").ToString()
+
+
+            Else
+                MsgBox("no record found")
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            reader.Close()
+        End Try
+    End Sub
+    Public Sub DisplayArchivesData()
+        Try
+            Dim sqlquery As String = "SELECT * FROM Archives;"
+
+            Using adapter As New MySqlDataAdapter(sqlquery, con)
+                ' Fill the local DataTable with data from the database
+                dtTable.Clear()
+                adapter.Fill(dtTable)
+            End Using
+
+            ' Check if there is any data before setting it as the data source
+            If dtTable.Rows.Count > 0 Then
+                ' Use the local data table as the data source for the DataGridView
+                With ArchiveCampers.dgvdata
+                    .DataSource = dtTable
+                    .AutoResizeColumns()
+                End With
+            Else
+                MsgBox("No data found.")
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Message)
+        End Try
+    End Sub
+
+    Public Sub ActivitiesSelection()
+        Try
+
+            Dim sqlquery As String = "SELECT activityid,activityName,description,date,time from activities;"
+            Dim adapter As New MySqlDataAdapter(sqlquery, con)
+
+            Dim dtTable As New DataTable
+            adapter.Fill(dtTable)
+
+            ' Use the data table as the data source for the DataGridView
+            With CamperInterface.dgvdata
+                .DataSource = dtTable
+                .AutoResizeColumns()
+
+            End With
+
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub dgvclicksave(ByVal e As DataGridViewCellEventArgs)
+        ' Check if a valid row index and column index is clicked
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            Try
+                ' Assuming your DataGridView has columns named activityid, activityName, description, date, time
+                Dim camperid As String = CamperInterface.txtid.text
+                Dim activityId As Object = CamperInterface.dgvdata.Rows(e.RowIndex).Cells("activityid").Value
+
+                ' Build the INSERT SQL query
+                Dim insertQuery As String = "INSERT INTO camperactivities (camperid,activityid) " &
+                                             "VALUES (@camperid,@activityid);"
+
+                ' Create a new MySqlCommand
+                Using cmd As New MySqlCommand(insertQuery, con)
+                    ' Add parameters to the query
+                    cmd.Parameters.AddWithValue("@activityid", activityId)
+                    cmd.Parameters.AddWithValue("@camperid", camperid)
+
+                    cmd.ExecuteNonQuery()
+                End Using
+
+                ' Display a message or perform any additional actions if needed
+                MsgBox("Data inserted into AnotherTable successfully!")
+
+            Catch ex As Exception
+                MsgBox("Error: " & ex.Message)
+            End Try
+        End If
+    End Sub
+
+
 End Module

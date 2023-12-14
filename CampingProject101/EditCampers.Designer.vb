@@ -27,7 +27,6 @@ Partial Class EditCampers
         Button5 = New Button()
         Button1 = New Button()
         Label10 = New Label()
-        Button4 = New Button()
         Button2 = New Button()
         Button8 = New Button()
         Button7 = New Button()
@@ -53,16 +52,29 @@ Partial Class EditCampers
         ID = New Label()
         txtdate = New TextBox()
         Label9 = New Label()
+        lblname = New Label()
+        lblpass = New Label()
+        lblfname = New Label()
+        lblage = New Label()
+        lbljdate = New Label()
+        lblid = New Label()
+        lbladdress = New Label()
+        lblnumber = New Label()
+        lblbdate = New Label()
+        lblcamperid = New Label()
+        Label12 = New Label()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
         ' txtBirthday
         ' 
+        txtBirthday.Enabled = False
         txtBirthday.Location = New Point(224, 208)
         txtBirthday.Margin = New Padding(3, 2, 3, 2)
         txtBirthday.Name = "txtBirthday"
         txtBirthday.Size = New Size(236, 23)
         txtBirthday.TabIndex = 62
+        txtBirthday.Visible = False
         ' 
         ' Button6
         ' 
@@ -79,7 +91,7 @@ Partial Class EditCampers
         Button5.Name = "Button5"
         Button5.Size = New Size(131, 23)
         Button5.TabIndex = 5
-        Button5.Text = "Search Campers"
+        Button5.Text = "Archive Campers"
         Button5.UseVisualStyleBackColor = True
         ' 
         ' Button1
@@ -101,27 +113,17 @@ Partial Class EditCampers
         Label10.TabIndex = 0
         Label10.Text = "Camper Management"
         ' 
-        ' Button4
-        ' 
-        Button4.Location = New Point(47, 207)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(99, 23)
-        Button4.TabIndex = 4
-        Button4.Text = "View Campers"
-        Button4.UseVisualStyleBackColor = True
-        ' 
         ' Button2
         ' 
-        Button2.Location = New Point(47, 155)
+        Button2.Location = New Point(31, 164)
         Button2.Name = "Button2"
-        Button2.Size = New Size(99, 23)
+        Button2.Size = New Size(131, 23)
         Button2.TabIndex = 2
         Button2.Text = "Edit Campers"
         Button2.UseVisualStyleBackColor = True
         ' 
         ' Button8
         ' 
-        Button8.Enabled = False
         Button8.Location = New Point(275, 391)
         Button8.Name = "Button8"
         Button8.Size = New Size(117, 36)
@@ -146,7 +148,6 @@ Partial Class EditCampers
         Panel1.Controls.Add(Button5)
         Panel1.Controls.Add(Button1)
         Panel1.Controls.Add(Label10)
-        Panel1.Controls.Add(Button4)
         Panel1.Controls.Add(Button2)
         Panel1.Location = New Point(-6, -28)
         Panel1.Name = "Panel1"
@@ -175,7 +176,6 @@ Partial Class EditCampers
         ' 
         ' Button3
         ' 
-        Button3.Enabled = False
         Button3.Location = New Point(511, 391)
         Button3.Name = "Button3"
         Button3.Size = New Size(117, 36)
@@ -185,21 +185,25 @@ Partial Class EditCampers
         ' 
         ' txtconfirmPassword
         ' 
+        txtconfirmPassword.Enabled = False
         txtconfirmPassword.Location = New Point(464, 106)
         txtconfirmPassword.Margin = New Padding(3, 2, 3, 2)
         txtconfirmPassword.Name = "txtconfirmPassword"
         txtconfirmPassword.PasswordChar = "*"c
         txtconfirmPassword.Size = New Size(114, 23)
         txtconfirmPassword.TabIndex = 56
+        txtconfirmPassword.Visible = False
         ' 
         ' txtPassword
         ' 
+        txtPassword.Enabled = False
         txtPassword.Location = New Point(224, 106)
         txtPassword.Margin = New Padding(3, 2, 3, 2)
         txtPassword.Name = "txtPassword"
         txtPassword.PasswordChar = "*"c
         txtPassword.Size = New Size(114, 23)
         txtPassword.TabIndex = 55
+        txtPassword.Visible = False
         ' 
         ' Label6
         ' 
@@ -255,7 +259,7 @@ Partial Class EditCampers
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(464, 74)
+        Label1.Location = New Point(474, 70)
         Label1.Name = "Label1"
         Label1.Size = New Size(81, 21)
         Label1.TabIndex = 49
@@ -263,43 +267,53 @@ Partial Class EditCampers
         ' 
         ' txtAddress
         ' 
+        txtAddress.Enabled = False
         txtAddress.Location = New Point(224, 276)
         txtAddress.Margin = New Padding(3, 2, 3, 2)
         txtAddress.Name = "txtAddress"
         txtAddress.Size = New Size(236, 23)
         txtAddress.TabIndex = 48
+        txtAddress.Visible = False
         ' 
         ' txtAge
         ' 
+        txtAge.Enabled = False
         txtAge.Location = New Point(224, 172)
         txtAge.Margin = New Padding(3, 2, 3, 2)
         txtAge.Name = "txtAge"
         txtAge.Size = New Size(236, 23)
         txtAge.TabIndex = 47
+        txtAge.Visible = False
         ' 
         ' txtPhoneNum
         ' 
+        txtPhoneNum.Enabled = False
         txtPhoneNum.Location = New Point(224, 243)
         txtPhoneNum.Margin = New Padding(3, 2, 3, 2)
         txtPhoneNum.Name = "txtPhoneNum"
         txtPhoneNum.Size = New Size(236, 23)
         txtPhoneNum.TabIndex = 46
+        txtPhoneNum.Visible = False
         ' 
         ' txtFullName
         ' 
+        txtFullName.Enabled = False
         txtFullName.Location = New Point(224, 138)
         txtFullName.Margin = New Padding(3, 2, 3, 2)
         txtFullName.Name = "txtFullName"
         txtFullName.Size = New Size(236, 23)
         txtFullName.TabIndex = 45
+        txtFullName.Visible = False
         ' 
         ' txtUsername
         ' 
+        txtUsername.Enabled = False
         txtUsername.Location = New Point(222, 72)
         txtUsername.Margin = New Padding(3, 2, 3, 2)
         txtUsername.Name = "txtUsername"
         txtUsername.Size = New Size(236, 23)
         txtUsername.TabIndex = 43
+        txtUsername.Visible = False
         ' 
         ' txtid
         ' 
@@ -311,11 +325,13 @@ Partial Class EditCampers
         ' 
         ' txtuserid
         ' 
+        txtuserid.Enabled = False
         txtuserid.Location = New Point(224, 314)
         txtuserid.Margin = New Padding(3, 2, 3, 2)
         txtuserid.Name = "txtuserid"
         txtuserid.Size = New Size(236, 23)
         txtuserid.TabIndex = 64
+        txtuserid.Visible = False
         ' 
         ' ID
         ' 
@@ -329,11 +345,13 @@ Partial Class EditCampers
         ' 
         ' txtdate
         ' 
+        txtdate.Enabled = False
         txtdate.Location = New Point(224, 345)
         txtdate.Margin = New Padding(3, 2, 3, 2)
         txtdate.Name = "txtdate"
         txtdate.Size = New Size(236, 23)
         txtdate.TabIndex = 66
+        txtdate.Visible = False
         ' 
         ' Label9
         ' 
@@ -345,11 +363,132 @@ Partial Class EditCampers
         Label9.TabIndex = 67
         Label9.Text = "Join Date"
         ' 
+        ' lblname
+        ' 
+        lblname.AutoSize = True
+        lblname.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblname.Location = New Point(302, 70)
+        lblname.Name = "lblname"
+        lblname.Size = New Size(81, 21)
+        lblname.TabIndex = 68
+        lblname.Text = "Username"
+        ' 
+        ' lblpass
+        ' 
+        lblpass.AutoSize = True
+        lblpass.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblpass.Location = New Point(240, 106)
+        lblpass.Name = "lblpass"
+        lblpass.Size = New Size(76, 21)
+        lblpass.TabIndex = 69
+        lblpass.Text = "Password"
+        ' 
+        ' lblfname
+        ' 
+        lblfname.AutoSize = True
+        lblfname.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblfname.Location = New Point(311, 138)
+        lblfname.Name = "lblfname"
+        lblfname.Size = New Size(74, 21)
+        lblfname.TabIndex = 70
+        lblfname.Text = "Fullname"
+        ' 
+        ' lblage
+        ' 
+        lblage.AutoSize = True
+        lblage.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblage.Location = New Point(319, 172)
+        lblage.Name = "lblage"
+        lblage.Size = New Size(37, 21)
+        lblage.TabIndex = 71
+        lblage.Text = "Age"
+        ' 
+        ' lbljdate
+        ' 
+        lbljdate.AutoSize = True
+        lbljdate.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbljdate.Location = New Point(302, 343)
+        lbljdate.Name = "lbljdate"
+        lbljdate.Size = New Size(70, 21)
+        lbljdate.TabIndex = 76
+        lbljdate.Text = "JoinDate"
+        ' 
+        ' lblid
+        ' 
+        lblid.AutoSize = True
+        lblid.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblid.Location = New Point(333, 314)
+        lblid.Name = "lblid"
+        lblid.Size = New Size(25, 21)
+        lblid.TabIndex = 75
+        lblid.Text = "ID"
+        ' 
+        ' lbladdress
+        ' 
+        lbladdress.AutoSize = True
+        lbladdress.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbladdress.Location = New Point(317, 278)
+        lbladdress.Name = "lbladdress"
+        lbladdress.Size = New Size(66, 21)
+        lbladdress.TabIndex = 74
+        lbladdress.Text = "Address"
+        ' 
+        ' lblnumber
+        ' 
+        lblnumber.AutoSize = True
+        lblnumber.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblnumber.Location = New Point(289, 243)
+        lblnumber.Name = "lblnumber"
+        lblnumber.Size = New Size(112, 21)
+        lblnumber.TabIndex = 73
+        lblnumber.Text = "PhoneNumber"
+        ' 
+        ' lblbdate
+        ' 
+        lblbdate.AutoSize = True
+        lblbdate.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblbdate.Location = New Point(267, 208)
+        lblbdate.Name = "lblbdate"
+        lblbdate.Size = New Size(68, 21)
+        lblbdate.TabIndex = 72
+        lblbdate.Text = "Birthday"
+        ' 
+        ' lblcamperid
+        ' 
+        lblcamperid.AutoSize = True
+        lblcamperid.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblcamperid.Location = New Point(289, 49)
+        lblcamperid.Name = "lblcamperid"
+        lblcamperid.Size = New Size(80, 21)
+        lblcamperid.TabIndex = 77
+        lblcamperid.Text = "CamperID"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label12.Location = New Point(464, 49)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(80, 21)
+        Label12.TabIndex = 78
+        Label12.Text = "CamperID"
+        ' 
         ' EditCampers
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(740, 453)
+        Controls.Add(Label12)
+        Controls.Add(lblcamperid)
+        Controls.Add(lbljdate)
+        Controls.Add(lblid)
+        Controls.Add(lbladdress)
+        Controls.Add(lblnumber)
+        Controls.Add(lblbdate)
+        Controls.Add(lblage)
+        Controls.Add(lblfname)
+        Controls.Add(lblpass)
+        Controls.Add(lblname)
         Controls.Add(Label9)
         Controls.Add(txtdate)
         Controls.Add(ID)
@@ -376,7 +515,7 @@ Partial Class EditCampers
         Controls.Add(txtFullName)
         Controls.Add(txtUsername)
         Name = "EditCampers"
-        Text = "EditCampers"
+        Text = "0"
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)
@@ -388,7 +527,6 @@ Partial Class EditCampers
     Friend WithEvents Button5 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Label10 As Label
-    Friend WithEvents Button4 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button7 As Button
@@ -414,4 +552,15 @@ Partial Class EditCampers
     Friend WithEvents ID As Label
     Friend WithEvents txtdate As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents lblname As Label
+    Friend WithEvents lblpass As Label
+    Friend WithEvents lblfname As Label
+    Friend WithEvents lblage As Label
+    Friend WithEvents lbljdate As Label
+    Friend WithEvents lblid As Label
+    Friend WithEvents lbladdress As Label
+    Friend WithEvents lblnumber As Label
+    Friend WithEvents lblbdate As Label
+    Friend WithEvents lblcamperid As Label
+    Friend WithEvents Label12 As Label
 End Class

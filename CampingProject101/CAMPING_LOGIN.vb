@@ -11,7 +11,8 @@ Public Class Camping_Login
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        login()
+        ConnectDbase()
+        Login()
     End Sub
 
     Private Sub checkhide_CheckedChanged(sender As Object, e As EventArgs) Handles checkhide.CheckedChanged
