@@ -63,6 +63,9 @@ Partial Class EditCampers
         lblbdate = New Label()
         lblcamperid = New Label()
         Label12 = New Label()
+        txtcamperid = New TextBox()
+        btnupd = New Button()
+        btncancel = New Button()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -124,7 +127,7 @@ Partial Class EditCampers
         ' 
         ' Button8
         ' 
-        Button8.Location = New Point(275, 391)
+        Button8.Location = New Point(364, 391)
         Button8.Name = "Button8"
         Button8.Size = New Size(117, 36)
         Button8.TabIndex = 42
@@ -157,12 +160,14 @@ Partial Class EditCampers
         ' Label8
         ' 
         Label8.AutoSize = True
+        Label8.Enabled = False
         Label8.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
         Label8.Location = New Point(602, 106)
         Label8.Name = "Label8"
         Label8.Size = New Size(137, 21)
         Label8.TabIndex = 58
         Label8.Text = "Confirm Password"
+        Label8.Visible = False
         ' 
         ' Label7
         ' 
@@ -176,12 +181,14 @@ Partial Class EditCampers
         ' 
         ' Button3
         ' 
+        Button3.Enabled = False
         Button3.Location = New Point(511, 391)
         Button3.Name = "Button3"
         Button3.Size = New Size(117, 36)
         Button3.TabIndex = 41
         Button3.Text = "Delete Campers"
         Button3.UseVisualStyleBackColor = True
+        Button3.Visible = False
         ' 
         ' txtconfirmPassword
         ' 
@@ -259,7 +266,7 @@ Partial Class EditCampers
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(474, 70)
+        Label1.Location = New Point(474, 81)
         Label1.Name = "Label1"
         Label1.Size = New Size(81, 21)
         Label1.TabIndex = 49
@@ -308,7 +315,7 @@ Partial Class EditCampers
         ' txtUsername
         ' 
         txtUsername.Enabled = False
-        txtUsername.Location = New Point(222, 72)
+        txtUsername.Location = New Point(224, 81)
         txtUsername.Margin = New Padding(3, 2, 3, 2)
         txtUsername.Name = "txtUsername"
         txtUsername.Size = New Size(236, 23)
@@ -367,7 +374,7 @@ Partial Class EditCampers
         ' 
         lblname.AutoSize = True
         lblname.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        lblname.Location = New Point(302, 70)
+        lblname.Location = New Point(302, 79)
         lblname.Name = "lblname"
         lblname.Size = New Size(81, 21)
         lblname.TabIndex = 68
@@ -472,12 +479,47 @@ Partial Class EditCampers
         Label12.Size = New Size(80, 21)
         Label12.TabIndex = 78
         Label12.Text = "CamperID"
+        Label12.TextAlign = ContentAlignment.TopRight
+        ' 
+        ' txtcamperid
+        ' 
+        txtcamperid.Enabled = False
+        txtcamperid.Location = New Point(222, 51)
+        txtcamperid.Margin = New Padding(3, 2, 3, 2)
+        txtcamperid.Name = "txtcamperid"
+        txtcamperid.Size = New Size(236, 23)
+        txtcamperid.TabIndex = 79
+        txtcamperid.Visible = False
+        ' 
+        ' btnupd
+        ' 
+        btnupd.Enabled = False
+        btnupd.Location = New Point(362, 391)
+        btnupd.Name = "btnupd"
+        btnupd.Size = New Size(117, 36)
+        btnupd.TabIndex = 80
+        btnupd.Text = "Update Campers"
+        btnupd.UseVisualStyleBackColor = True
+        btnupd.Visible = False
+        ' 
+        ' btncancel
+        ' 
+        btncancel.Enabled = False
+        btncancel.Location = New Point(239, 391)
+        btncancel.Name = "btncancel"
+        btncancel.Size = New Size(117, 36)
+        btncancel.TabIndex = 81
+        btncancel.Text = "Cancel Edit"
+        btncancel.UseVisualStyleBackColor = True
+        btncancel.Visible = False
         ' 
         ' EditCampers
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(740, 453)
+        Controls.Add(btncancel)
+        Controls.Add(btnupd)
         Controls.Add(Label12)
         Controls.Add(lblcamperid)
         Controls.Add(lbljdate)
@@ -514,6 +556,7 @@ Partial Class EditCampers
         Controls.Add(txtPhoneNum)
         Controls.Add(txtFullName)
         Controls.Add(txtUsername)
+        Controls.Add(txtcamperid)
         Name = "EditCampers"
         Text = "0"
         Panel1.ResumeLayout(False)
@@ -563,4 +606,7 @@ Partial Class EditCampers
     Friend WithEvents lblbdate As Label
     Friend WithEvents lblcamperid As Label
     Friend WithEvents Label12 As Label
+    Friend WithEvents txtcamperid As TextBox
+    Friend WithEvents btnupd As Button
+    Friend WithEvents btncancel As Button
 End Class
