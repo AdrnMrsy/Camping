@@ -150,7 +150,7 @@ Partial Class ActivityCreation
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(155, 55)
+        Label1.Location = New Point(155, 56)
         Label1.Name = "Label1"
         Label1.Size = New Size(121, 15)
         Label1.TabIndex = 12
@@ -244,7 +244,7 @@ Partial Class ActivityCreation
         ' btnenable
         ' 
         btnenable.Enabled = False
-        btnenable.Location = New Point(34, 98)
+        btnenable.Location = New Point(32, 98)
         btnenable.Name = "btnenable"
         btnenable.Size = New Size(75, 23)
         btnenable.TabIndex = 22

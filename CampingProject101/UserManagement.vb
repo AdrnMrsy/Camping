@@ -7,9 +7,12 @@
     Private Sub UserManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         usercamperDisplayData()
         userstaffDisplayData()
+        DisplayTotalusermanagement()
+        DisplayTotalStaffusermanagement()
+        DisplayTotalCamperusermanagement()
     End Sub
 
-    Private Sub lbltotal_Click(sender As Object, e As EventArgs) Handles lbltotal.Click
+    Private Sub lbltotal_Click(sender As Object, e As EventArgs) Handles lbltotalusers.Click
 
     End Sub
 End Class

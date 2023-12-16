@@ -31,7 +31,7 @@ Partial Class UserManagement
         lblcampers = New Label()
         Label4 = New Label()
         Panel2 = New Panel()
-        lbltotal = New Label()
+        lbltotalusers = New Label()
         Label2 = New Label()
         Panel4 = New Panel()
         lblstaff = New Label()
@@ -126,22 +126,22 @@ Partial Class UserManagement
         ' Panel2
         ' 
         Panel2.BackColor = SystemColors.ActiveBorder
-        Panel2.Controls.Add(lbltotal)
+        Panel2.Controls.Add(lbltotalusers)
         Panel2.Controls.Add(Label2)
         Panel2.Location = New Point(239, 29)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(120, 100)
         Panel2.TabIndex = 96
         ' 
-        ' lbltotal
+        ' lbltotalusers
         ' 
-        lbltotal.AutoSize = True
-        lbltotal.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        lbltotal.Location = New Point(54, 59)
-        lbltotal.Name = "lbltotal"
-        lbltotal.Size = New Size(19, 21)
-        lbltotal.TabIndex = 12
-        lbltotal.Text = "0"
+        lbltotalusers.AutoSize = True
+        lbltotalusers.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lbltotalusers.Location = New Point(54, 59)
+        lbltotalusers.Name = "lbltotalusers"
+        lbltotalusers.Size = New Size(19, 21)
+        lbltotalusers.TabIndex = 12
+        lbltotalusers.Text = "0"
         ' 
         ' Label2
         ' 
@@ -227,7 +227,7 @@ Partial Class UserManagement
     Friend WithEvents lblcampers As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents lbltotal As Label
+    Friend WithEvents lbltotalusers As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Panel4 As Panel
     Friend WithEvents lblstaff As Label

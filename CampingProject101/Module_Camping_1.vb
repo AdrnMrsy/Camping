@@ -749,6 +749,32 @@ FROM (
             MsgBox("Error retrieving total campers: " & ex.Message)
         End Try
     End Sub
+    Public Sub DisplayTotalusermanagement()
+        Try
+            ' SQL query to get the total number of campers
+            Dim sqlquery As String = "SELECT SUM(TotalRows) AS CombinedTotalRows
+FROM (
+    SELECT COUNT(*) AS TotalRows FROM campers
+    UNION ALL
+    SELECT COUNT(*) AS TotalRows FROM Staff
+) AS CombinedCounts;
+
+"
+            Using mysqlcmd As New MySqlCommand(sqlquery, con)
+
+                ' Execute the query and retrieve the result
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader()
+                    If reader.Read() Then
+
+                        UserManagement.lbltotalusers.Text = reader("CombinedTotalRows").ToString()
+                    End If
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MsgBox("Error retrieving total campers: " & ex.Message)
+        End Try
+    End Sub
     Public Sub DisplayTotalStaffsadmin()
         Try
             ' SQL query to get the total number of campers
@@ -763,6 +789,47 @@ FROM (
                     If reader.Read() Then
 
                         AdminInterface.lblstaff.Text = reader("TotalRows").ToString()
+                    End If
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MsgBox("Error retrieving total campers: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub DisplayTotalStaffusermanagement()
+        Try
+            ' SQL query to get the total number of campers
+            Dim sqlquery As String = "  
+    SELECT COUNT(*) AS TotalRows FROM Staff;
+
+"
+            Using mysqlcmd As New MySqlCommand(sqlquery, con)
+
+                ' Execute the query and retrieve the result
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader()
+                    If reader.Read() Then
+
+                        UserManagement.lblstaff.Text = reader("TotalRows").ToString()
+                    End If
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MsgBox("Error retrieving total campers: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub DisplayTotalCamperusermanagement()
+        Try
+            ' SQL query to get the total number of campers
+            Dim sqlquery As String = "SELECT COUNT(*) AS total_campers FROM campers;"
+            Using mysqlcmd As New MySqlCommand(sqlquery, con)
+
+                ' Execute the query and retrieve the result
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader()
+                    If reader.Read() Then
+
+                        UserManagement.lblcampers.Text = reader("total_campers").ToString()
                     End If
                 End Using
 

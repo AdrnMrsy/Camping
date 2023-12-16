@@ -34,4 +34,11 @@
         AddActivities()
         ActivityDisplayData()
     End Sub
+
+    Private Sub btnenable_Click(sender As Object, e As EventArgs) Handles btnenable.Click
+        btnadd.Enabled = True
+        btnadd.Visible = True
+        Button2.Enabled = False
+        Button3.Enabled = False
+    End Sub
 End Class
