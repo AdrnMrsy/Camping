@@ -149,7 +149,7 @@ Partial Class UserProfile
         ' 
         lblfname.AutoSize = True
         lblfname.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        lblfname.Location = New Point(320, 17)
+        lblfname.Location = New Point(315, 85)
         lblfname.Name = "lblfname"
         lblfname.Size = New Size(74, 21)
         lblfname.TabIndex = 103
@@ -159,7 +159,7 @@ Partial Class UserProfile
         ' 
         lblpass.AutoSize = True
         lblpass.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        lblpass.Location = New Point(320, 117)
+        lblpass.Location = New Point(315, 115)
         lblpass.Name = "lblpass"
         lblpass.Size = New Size(76, 21)
         lblpass.TabIndex = 102
@@ -169,7 +169,7 @@ Partial Class UserProfile
         ' 
         lblname.AutoSize = True
         lblname.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        lblname.Location = New Point(315, 87)
+        lblname.Location = New Point(306, 15)
         lblname.Name = "lblname"
         lblname.Size = New Size(81, 21)
         lblname.TabIndex = 101
@@ -207,7 +207,6 @@ Partial Class UserProfile
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Enabled = False
         Label8.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
         Label8.Location = New Point(473, 144)
         Label8.Name = "Label8"

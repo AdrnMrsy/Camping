@@ -22,7 +22,6 @@ Partial Class CamperInterface
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Button2 = New Button()
         Button3 = New Button()
         Label1 = New Label()
         Panel1 = New Panel()
@@ -30,22 +29,14 @@ Partial Class CamperInterface
         dgvdata = New DataGridView()
         FlowLayoutPanel = New FlowLayoutPanel()
         Label2 = New Label()
+        Button2 = New Button()
         Panel1.SuspendLayout()
         CType(dgvdata, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(20, 63)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(124, 23)
-        Button2.TabIndex = 1
-        Button2.Text = "Camping Activities"
-        Button2.UseVisualStyleBackColor = True
-        ' 
         ' Button3
         ' 
-        Button3.Location = New Point(20, 105)
+        Button3.Location = New Point(20, 107)
         Button3.Name = "Button3"
         Button3.Size = New Size(124, 23)
         Button3.TabIndex = 2
@@ -64,10 +55,10 @@ Partial Class CamperInterface
         ' Panel1
         ' 
         Panel1.BackColor = SystemColors.ActiveBorder
+        Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(Button1)
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Label1)
-        Panel1.Controls.Add(Button2)
         Panel1.Location = New Point(1, 1)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(200, 337)
@@ -108,6 +99,15 @@ Partial Class CamperInterface
         Label2.TabIndex = 0
         Label2.Text = "Announcements"
         ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(20, 56)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(124, 23)
+        Button2.TabIndex = 5
+        Button2.Text = "Camping Activities"
+        Button2.UseVisualStyleBackColor = True
+        ' 
         ' CamperInterface
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -126,7 +126,6 @@ Partial Class CamperInterface
         ResumeLayout(False)
         PerformLayout()
     End Sub
-    Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel1 As Panel
@@ -134,4 +133,5 @@ Partial Class CamperInterface
     Friend WithEvents FlowLayoutPanel As FlowLayoutPanel
     Friend WithEvents Button1 As Button
     Friend WithEvents Label2 As Label
+    Friend WithEvents Button2 As Button
 End Class

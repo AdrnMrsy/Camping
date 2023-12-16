@@ -18,6 +18,8 @@
     Private Sub AdminInterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DisplayTotalCampersadmin()
         DisplayTotalActivities()
+        DisplayTotalStaffsadmin()
+        DisplayTotalusersadmin()
     End Sub
 
     Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
@@ -27,6 +29,12 @@
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Me.Hide()
         ActivityCreation.Show()
+
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        Me.Close()
+        UserManagement.Show()
 
     End Sub
 End Class

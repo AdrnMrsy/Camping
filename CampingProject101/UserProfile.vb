@@ -109,6 +109,11 @@
     End Sub
     Private _userID As Integer
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
+        camperactivities.Show()
+    End Sub
+
     Public Property UserID() As Integer
         Get
             Return _userID

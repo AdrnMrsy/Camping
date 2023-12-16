@@ -102,6 +102,7 @@ Module Module_Camping_1
                             WelcomeCamper.Show()
                             UserProfile.UserID = userId
                             CamperInterface.UserID = userId
+                            camperactivities.userid = userId
                             Camping_Login.Hide()
                         ElseIf role = "Admin" Then
                             WelcomeAdmin.Show()
@@ -722,6 +723,54 @@ Module Module_Camping_1
             MsgBox("Error retrieving total campers: " & ex.Message)
         End Try
     End Sub
+    Public Sub DisplayTotalusersadmin()
+        Try
+            ' SQL query to get the total number of campers
+            Dim sqlquery As String = "SELECT SUM(TotalRows) AS CombinedTotalRows
+FROM (
+    SELECT COUNT(*) AS TotalRows FROM campers
+    UNION ALL
+    SELECT COUNT(*) AS TotalRows FROM Staff
+) AS CombinedCounts;
+
+"
+            Using mysqlcmd As New MySqlCommand(sqlquery, con)
+
+                ' Execute the query and retrieve the result
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader()
+                    If reader.Read() Then
+
+                        AdminInterface.lblusers.Text = reader("CombinedTotalRows").ToString()
+                    End If
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MsgBox("Error retrieving total campers: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub DisplayTotalStaffsadmin()
+        Try
+            ' SQL query to get the total number of campers
+            Dim sqlquery As String = "  
+    SELECT COUNT(*) AS TotalRows FROM Staff;
+
+"
+            Using mysqlcmd As New MySqlCommand(sqlquery, con)
+
+                ' Execute the query and retrieve the result
+                Using reader As MySqlDataReader = mysqlcmd.ExecuteReader()
+                    If reader.Read() Then
+
+                        AdminInterface.lblstaff.Text = reader("TotalRows").ToString()
+                    End If
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MsgBox("Error retrieving total campers: " & ex.Message)
+        End Try
+    End Sub
     Public Sub DisplayTotalCampersStaff()
         Try
             ' SQL query to get the total number of campers
@@ -756,6 +805,95 @@ Module Module_Camping_1
             If localDtTable.Rows.Count > 0 Then
                 ' Use the local data table as the data source for the DataGridView
                 With ActivityCreation.dgvdata
+                    .DataSource = localDtTable
+                    .AutoResizeColumns()
+                End With
+            Else
+                MsgBox("No data found.")
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error retrieving and displaying data: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub usercamperDisplayData()
+        Try
+            Dim localDtTable As New DataTable
+            Dim sqlquery As String = "
+SELECT 
+    A.AccountID,
+    A.Username,
+    A.Password,
+    A.Account_Creation_Date,
+    A.Account_Type,
+    C.CamperID,
+    C.Name AS CamperName,
+    C.Age AS CamperAge,
+    C.Birthday AS CamperBirthday,
+    C.Phone_Num AS CamperPhoneNum,
+    C.Address AS CamperAddress,
+    C.Join_Date AS CamperJoinDate
+FROM 
+    Accounts A
+LEFT JOIN 
+    Campers C ON A.AccountID = C.AccountID where account_type = 'Camper';"
+
+
+            Using adapter As New MySqlDataAdapter(sqlquery, con)
+                ' Fill the local DataTable with data from the database
+                localDtTable.Clear()
+                adapter.Fill(localDtTable)
+            End Using
+
+            ' Check if there is any data before setting it as the data source
+            If localDtTable.Rows.Count > 0 Then
+                ' Use the local data table as the data source for the DataGridView
+                With UserManagement.dgvdata
+                    .DataSource = localDtTable
+                    .AutoResizeColumns()
+                End With
+            Else
+                MsgBox("No data found.")
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error retrieving and displaying data: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub userstaffDisplayData()
+        Try
+            Dim localDtTable As New DataTable
+            Dim sqlquery As String = "
+SELECT 
+    A.AccountID,
+    A.Username,
+    A.Password,
+    A.Account_Creation_Date,
+    A.Account_Type,
+    S.StaffID,
+    S.Name AS StaffName,
+    S.Age AS StaffAge,
+    S.Birthday AS StaffBirthday,
+    S.Phone_Num AS StaffPhoneNum,
+    S.Address AS StaffAddress,
+    S.Join_Date AS StaffJoinDate
+FROM 
+    Accounts A
+LEFT JOIN 
+    Staff S ON A.AccountID = S.AccountID
+ where Account_type = 'Staff';"
+
+
+            Using adapter As New MySqlDataAdapter(sqlquery, con)
+                ' Fill the local DataTable with data from the database
+                localDtTable.Clear()
+                adapter.Fill(localDtTable)
+            End Using
+
+            ' Check if there is any data before setting it as the data source
+            If localDtTable.Rows.Count > 0 Then
+                ' Use the local data table as the data source for the DataGridView
+                With UserManagement.dgvdata2
                     .DataSource = localDtTable
                     .AutoResizeColumns()
                 End With
@@ -869,37 +1007,6 @@ Module Module_Camping_1
             MsgBox("Error retrieving total campers: " & ex.Message)
         End Try
     End Sub
-    'Public Sub UpdateData()
-    '    Dim id As String
-    '    id = EditCampers.lblid.Text ' Assuming lblid is the label displaying the AccountID
-
-    '    Dim newName As String = EditCampers.txtNewName.Text ' Assuming txtNewName is a TextBox for updating the name
-    '    Dim newAge As Integer = Integer.Parse(EditCampers.txtNewAge.Text) ' Assuming txtNewAge is a TextBox for updating the age
-    '    ' Add other variables for the fields you want to update
-
-    '    ' Construct the SQL update query
-    '    Dim updateQuery As String = "UPDATE campers SET Name = @newName, Age = @newAge WHERE AccountID = @id;"
-    '    mysqlcmd = New MySqlCommand(updateQuery, con)
-
-    '    ' Add parameters for the update query
-    '    mysqlcmd.Parameters.AddWithValue("@newName", newName)
-    '    mysqlcmd.Parameters.AddWithValue("@newAge", newAge)
-    '    mysqlcmd.Parameters.AddWithValue("@id", id)
-
-    '    Try
-    '        ' Execute the update query
-    '        Dim rowsAffected As Integer = mysqlcmd.ExecuteNonQuery()
-
-    '        If rowsAffected > 0 Then
-    '            MsgBox("Record updated successfully")
-    '        Else
-    '            MsgBox("No record updated. Please check the provided ID.")
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message)
-    '    End Try
-    'End Sub
 
     Public Sub GetArchiveData()
         Dim id As String
@@ -984,6 +1091,47 @@ Module Module_Camping_1
             MsgBox("Error: " & ex.Message)
         End Try
     End Sub
+    Public Sub viewActivities(camperid As Integer)
+        Try
+
+            Dim sqlquery As String = "SELECT 
+    Activities.ActivityID,
+    Activities.ActivityName,
+    Activities.Description,
+    Activities.Date,
+    Activities.Time,
+    Activities.Capacity,
+    CamperActivities.CamperActivityID,
+    CamperActivities.CamperID,
+    CamperActivities.RegistrationDate
+    FROM 
+    Activities 
+    INNER JOIN 
+    CamperActivities  ON Activities.ActivityID = CamperActivities.ActivityID
+     ;
+"
+            Dim adapter As New MySqlDataAdapter(sqlquery, con)
+            adapter.SelectCommand.Parameters.AddWithValue("@camperid", camperid)
+
+            Dim dtTable As New DataTable
+            adapter.Fill(dtTable)
+
+            ' Use the data table as the data source for the DataGridView
+            With camperactivities.dgvdata
+                .DataSource = dtTable
+                .AutoResizeColumns()
+
+            End With
+
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Message)
+        End Try
+    End Sub
+
+
+
+
+
     Public Sub dgvclicksave(ByVal e As DataGridViewCellEventArgs)
         ' Check if a valid row index and column index is clicked
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then

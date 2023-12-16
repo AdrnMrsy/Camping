@@ -20,13 +20,17 @@
         lbl1.Visible = True
         lblactid.Visible = True
         lbldate.Visible = True
+        btnadd.Enabled = False
+        btnenable.Enabled = True
+        btnenable.Visible = True
+
     End Sub
 
     Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles rtxdesc.TextChanged
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnadd.Click
         AddActivities()
         ActivityDisplayData()
     End Sub

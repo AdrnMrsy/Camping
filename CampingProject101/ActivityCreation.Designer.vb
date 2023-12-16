@@ -22,7 +22,7 @@ Partial Class ActivityCreation
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Button1 = New Button()
+        btnadd = New Button()
         Button2 = New Button()
         Button3 = New Button()
         Button4 = New Button()
@@ -44,17 +44,18 @@ Partial Class ActivityCreation
         lblactid = New Label()
         lbldate = New Label()
         lbl2 = New Label()
+        btnenable = New Button()
         CType(dgvdata, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Button1
+        ' btnadd
         ' 
-        Button1.Location = New Point(34, 98)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 0
-        Button1.Text = "Add"
-        Button1.UseVisualStyleBackColor = True
+        btnadd.Location = New Point(34, 98)
+        btnadd.Name = "btnadd"
+        btnadd.Size = New Size(75, 23)
+        btnadd.TabIndex = 0
+        btnadd.Text = "Add"
+        btnadd.UseVisualStyleBackColor = True
         ' 
         ' Button2
         ' 
@@ -240,11 +241,23 @@ Partial Class ActivityCreation
         lbl2.Text = "Creation Date:"
         lbl2.Visible = False
         ' 
+        ' btnenable
+        ' 
+        btnenable.Enabled = False
+        btnenable.Location = New Point(34, 98)
+        btnenable.Name = "btnenable"
+        btnenable.Size = New Size(75, 23)
+        btnenable.TabIndex = 22
+        btnenable.Text = "Add"
+        btnenable.UseVisualStyleBackColor = True
+        btnenable.Visible = False
+        ' 
         ' ActivityCreation
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(btnenable)
         Controls.Add(lbl2)
         Controls.Add(lbldate)
         Controls.Add(lblactid)
@@ -266,7 +279,7 @@ Partial Class ActivityCreation
         Controls.Add(Button4)
         Controls.Add(Button3)
         Controls.Add(Button2)
-        Controls.Add(Button1)
+        Controls.Add(btnadd)
         Name = "ActivityCreation"
         Text = "ActivityCreation"
         CType(dgvdata, ComponentModel.ISupportInitialize).EndInit()
@@ -274,7 +287,7 @@ Partial Class ActivityCreation
         PerformLayout()
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnadd As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
@@ -297,4 +310,5 @@ Partial Class ActivityCreation
     Friend WithEvents lbldate As Label
     Friend WithEvents lbl2 As Label
     Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents btnenable As Button
 End Class

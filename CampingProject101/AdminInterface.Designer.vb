@@ -28,7 +28,6 @@ Partial Class AdminInterface
         Button1 = New Button()
         Button9 = New Button()
         Button8 = New Button()
-        Button7 = New Button()
         Button6 = New Button()
         Button5 = New Button()
         Label2 = New Label()
@@ -38,12 +37,16 @@ Partial Class AdminInterface
         lblact = New Label()
         Label4 = New Label()
         Panel4 = New Panel()
-        Label5 = New Label()
+        lblusers = New Label()
         Label6 = New Label()
+        Panel5 = New Panel()
+        lblstaff = New Label()
+        Label7 = New Label()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         Panel3.SuspendLayout()
         Panel4.SuspendLayout()
+        Panel5.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -72,7 +75,6 @@ Partial Class AdminInterface
         Panel1.Controls.Add(Button9)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(Button8)
-        Panel1.Controls.Add(Button7)
         Panel1.Controls.Add(Button6)
         Panel1.Controls.Add(Button5)
         Panel1.Controls.Add(btncampmng)
@@ -83,7 +85,7 @@ Partial Class AdminInterface
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(34, 354)
+        Button1.Location = New Point(34, 321)
         Button1.Name = "Button1"
         Button1.Size = New Size(143, 23)
         Button1.TabIndex = 10
@@ -92,7 +94,7 @@ Partial Class AdminInterface
         ' 
         ' Button9
         ' 
-        Button9.Location = New Point(34, 314)
+        Button9.Location = New Point(34, 272)
         Button9.Name = "Button9"
         Button9.Size = New Size(143, 23)
         Button9.TabIndex = 9
@@ -101,21 +103,12 @@ Partial Class AdminInterface
         ' 
         ' Button8
         ' 
-        Button8.Location = New Point(34, 269)
+        Button8.Location = New Point(34, 225)
         Button8.Name = "Button8"
         Button8.Size = New Size(143, 23)
         Button8.TabIndex = 8
         Button8.Text = "User Management"
         Button8.UseVisualStyleBackColor = True
-        ' 
-        ' Button7
-        ' 
-        Button7.Location = New Point(34, 225)
-        Button7.Name = "Button7"
-        Button7.Size = New Size(143, 23)
-        Button7.TabIndex = 7
-        Button7.Text = "Calendar/Scheduling"
-        Button7.UseVisualStyleBackColor = True
         ' 
         ' Button6
         ' 
@@ -172,14 +165,14 @@ Partial Class AdminInterface
         Panel3.Controls.Add(Label4)
         Panel3.Location = New Point(503, 51)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(164, 100)
+        Panel3.Size = New Size(175, 100)
         Panel3.TabIndex = 13
         ' 
         ' lblact
         ' 
         lblact.AutoSize = True
         lblact.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        lblact.Location = New Point(67, 59)
+        lblact.Location = New Point(78, 59)
         lblact.Name = "lblact"
         lblact.Size = New Size(19, 21)
         lblact.TabIndex = 12
@@ -189,7 +182,7 @@ Partial Class AdminInterface
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        Label4.Location = New Point(42, 14)
+        Label4.Location = New Point(55, 14)
         Label4.Name = "Label4"
         Label4.Size = New Size(72, 21)
         Label4.TabIndex = 11
@@ -198,22 +191,22 @@ Partial Class AdminInterface
         ' Panel4
         ' 
         Panel4.BackColor = SystemColors.ActiveBorder
-        Panel4.Controls.Add(Label5)
+        Panel4.Controls.Add(lblusers)
         Panel4.Controls.Add(Label6)
         Panel4.Location = New Point(269, 226)
         Panel4.Name = "Panel4"
         Panel4.Size = New Size(175, 100)
         Panel4.TabIndex = 13
         ' 
-        ' Label5
+        ' lblusers
         ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        Label5.Location = New Point(78, 60)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(19, 21)
-        Label5.TabIndex = 12
-        Label5.Text = "0"
+        lblusers.AutoSize = True
+        lblusers.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblusers.Location = New Point(78, 60)
+        lblusers.Name = "lblusers"
+        lblusers.Size = New Size(19, 21)
+        lblusers.TabIndex = 12
+        lblusers.Text = "0"
         ' 
         ' Label6
         ' 
@@ -221,15 +214,46 @@ Partial Class AdminInterface
         Label6.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
         Label6.Location = New Point(54, 14)
         Label6.Name = "Label6"
-        Label6.Size = New Size(72, 21)
+        Label6.Size = New Size(49, 21)
         Label6.TabIndex = 11
-        Label6.Text = "Campers"
+        Label6.Text = "Users"
+        ' 
+        ' Panel5
+        ' 
+        Panel5.BackColor = SystemColors.ActiveBorder
+        Panel5.Controls.Add(lblstaff)
+        Panel5.Controls.Add(Label7)
+        Panel5.Location = New Point(503, 226)
+        Panel5.Name = "Panel5"
+        Panel5.Size = New Size(175, 100)
+        Panel5.TabIndex = 13
+        ' 
+        ' lblstaff
+        ' 
+        lblstaff.AutoSize = True
+        lblstaff.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        lblstaff.Location = New Point(78, 59)
+        lblstaff.Name = "lblstaff"
+        lblstaff.Size = New Size(19, 21)
+        lblstaff.TabIndex = 12
+        lblstaff.Text = "0"
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label7.Location = New Point(67, 14)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(41, 21)
+        Label7.TabIndex = 11
+        Label7.Text = "Staff"
         ' 
         ' AdminInterface
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(761, 390)
+        Controls.Add(Panel5)
         Controls.Add(Panel4)
         Controls.Add(Panel3)
         Controls.Add(Panel2)
@@ -244,6 +268,8 @@ Partial Class AdminInterface
         Panel3.PerformLayout()
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
+        Panel5.ResumeLayout(False)
+        Panel5.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -253,7 +279,6 @@ Partial Class AdminInterface
     Friend WithEvents Button5 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button8 As Button
-    Friend WithEvents Button7 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Label2 As Label
@@ -263,6 +288,9 @@ Partial Class AdminInterface
     Friend WithEvents lblact As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lblusers As Label
     Friend WithEvents Label6 As Label
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents lblstaff As Label
+    Friend WithEvents Label7 As Label
 End Class
